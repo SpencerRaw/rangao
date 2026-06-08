@@ -50,6 +50,7 @@ def extract_pdf(
             img_path.write_bytes(image_bytes)
             images.append(img_path)
 
+    page_count = len(doc)
     doc.close()
 
     # Save full text
@@ -60,5 +61,5 @@ def extract_pdf(
         full_text="\n\n".join(all_text),
         images=images,
         paper=paper,
-        page_count=len(doc) if hasattr(doc, "page_count") else 0,
+        page_count=page_count,
     )
