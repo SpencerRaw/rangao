@@ -1,0 +1,45 @@
+# Secrets and credentials (NEVER commit)
+.env
+*.env
+.env.*
+# But DO commit the example template
+!.env.example
+
+# WeChat token cache (contains live session tokens)
+.wechat_token.json
+access_token_cache.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Agent internals
+.hermes/
+
+# Output and cache
+output/
+.cache/
+*.log
+*.tmp
+
+# Uploaded PDFs (may contain copyrighted material)
+output/pdfs/
+
+# Jupyter
+.ipynb_checkpoints/

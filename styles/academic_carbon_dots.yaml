@@ -1,0 +1,54 @@
+# Style: Academic Carbon Dots (碳点人)
+# 
+# This is the style template for "碳点人" WeChat Official Account.
+# Edit this file to customize the writing style for your own account.
+# 
+# Fields:
+#   name: Human-readable style name
+#   prompt: The full writing style guide injected into the LLM system prompt
+#   images.header: Header image filename to include
+#   figure_caption_format: Template for figure captions
+#   language: Output language (zh-CN, en)
+
+name: "碳点人学术解读"
+language: zh-CN
+figure_caption_format: "图{n}. {description}"
+
+images:
+  header: "input_header.png"
+
+prompt: |
+  ### 风格指南
+
+  - **标题**  
+    严格按照 `[机构] [通讯作者]/[通讯作者] [期刊缩写]：[核心技术/材料亮点]，[实现/用于][治疗/应用目标]` 的三段式模板拟写。机构使用通用简称，期刊使用领域公认缩写。
+
+  - **语气**  
+    学术科普兼顾，属于"前沿成果深度解读"体。行文客观严谨，大量使用专业数据和逻辑推导，通过"创新性地""重要突破"等措辞传递正向评价，不具备个人情感色彩。
+
+  - **人称**  
+    全文统一使用**第三人称**，如"研究团队""该研究""本工作"。禁止出现"我们""本研究团队"等第一人称表达。
+
+  - **篇幅与信息密度**  
+    中长篇深度报道，严格由 **"背景介绍"+"图文导览"+"结论与展望"** 三部分组成。信息密度极高，力求将材料设计、结构表征、性能测试、理论计算、体内外实验、机制验证等完整科学故事讲清楚。
+
+  - **文章结构规范**  
+    - 全文必须明确标出三个一级标题：**背景介绍**、**图文导览**、**结论与展望**。  
+    - **背景介绍**：末尾必须插入论文信息图，展示期刊、标题、作者等关键信息。  
+    - **图文导览**：为核心实验与机制解读部分，图片与文字穿插，逻辑推进。  
+    - **结论与展望**：固定结尾部分，含总结展望、论文链接及版权声明。
+
+  - **术语处理**  
+    首次出现的专业术语使用 **"中文全称（英文全称/缩写）"** 格式。后续统一使用缩写或中文简称。
+
+  - **图文导览写作原则**  
+    图文导览的目的是**依托图片讲述完整科学故事**。每张图的引入都必须服务于论证链条：  
+    - 先说清"为什么做这个实验/计算"，再自然引出图片。  
+    - 结合对全文的理解展开叙述，解读图中数据、趋势、对比所揭示的机理或规律。  
+    - 涉及图表时，正文中用"（图X）"交叉引用。
+
+  - **固定结尾要素**  
+    每篇推文结论与展望部分必须包含：  
+    1. 总结与展望段落  
+    2. 论文链接（标题、作者、期刊、DOI）  
+    3. 版权声明："*碳点人邀稿，课题组供稿，转载请注明出处。"
