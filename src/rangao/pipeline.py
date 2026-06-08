@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import argparse
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 from .config import get_config
@@ -47,6 +47,14 @@ def run_pipeline(
         elif doi and not skip_download:
             print(f"🔍 Downloading paper: {doi}")
             from .download.direct import download_from_doi
+            from .download.doi_fetcher import fetch_paper_metadata
+
+            # Fetch metadata first for better UX
+            paper_meta = fetch_paper_metadata(doi)
+            if paper_meta:
+                result.paper = paper_meta
+                print(f"   📋 {paper_meta.title[:80]}...")
+
             pdf = download_from_doi(doi)
             if pdf:
                 result.paper.pdf_path = pdf
@@ -137,8 +145,34 @@ def main():
     parser.add_argument("--publish", action="store_true", help="Auto-publish to WeChat draft box")
     parser.add_argument("--skip-download", action="store_true", help="Skip PDF download")
     parser.add_argument("--output-dir", help="Override output directory")
+    parser.add_argument("--list-styles", action="store_true", help="List available style templates and exit")
+    parser.add_argument("--mirror-status", action="store_true", help="Show Sci-Hub mirror health and exit")
 
     args = parser.parse_args()
+
+    # --list-styles
+    if args.list_styles:
+        from .generate.style_engine import StyleEngine
+        engine = StyleEngine(get_config().styles_dir)
+        styles = engine.list_styles()
+        print(f"Available styles ({len(styles)}):\n")
+        for name in sorted(styles):
+            s = engine.load(name)
+            print(f"  {name:<28s} — {s.get('name', name)}")
+        return
+
+    # --mirror-status
+    if args.mirror_status:
+        from .download.scihub import get_mirror_status
+        status = get_mirror_status()
+        healthy = sum(1 for t in status.values() if t)
+        print(f"Sci-Hub mirrors: {healthy}/{len(status)} healthy\n")
+        for mirror, resp_time in sorted(status.items(), key=lambda x: x[1] or 999):
+            if resp_time:
+                print(f"  ✅ {resp_time:.2f}s  {mirror}")
+            else:
+                print(f"  ❌ DOWN    {mirror}")
+        return
 
     if not args.doi and not args.pdf:
         parser.print_help()

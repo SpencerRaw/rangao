@@ -115,7 +115,7 @@ Use `<section>` (NOT <div>) for the grey background container:
 ### 8. Other Rules
 - Links: `<a style="color:#1976D2; text-decoration:none; border-bottom:1px solid #1976D2;" href="...">text</a>`
 - Blockquotes: use `<blockquote style="line-height:1.8em; text-align:left; margin:auto 3%; border:2px dotted #ddd; border-radius:0.7em; color:#999; padding:0 10px;">`
-- Tables: wrapped in `<section class="tbl-wrapper" style="margin:0 3%;">` with inline border styles
+- Tables: wrapped in `<section style="margin:0 3%;">` with inline border styles
 - ALL visual blocks (cards, info boxes, references) use `<section>`, NEVER `<div>`
 - Output ONLY the raw HTML code — no ```html markers, no explanations
 
@@ -131,8 +131,9 @@ Convert this markdown:
             {"role": "user", "content": prompt},
         ],
         temperature=0.1,
+        max_tokens=16384,
     )
-    return response.choices[0].message.content
+    return response.choices[0].message.content or ""
 
 
 def _clean_html_output(raw: str) -> str:

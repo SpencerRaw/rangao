@@ -6,8 +6,6 @@ WeChat articles following a configurable style template.
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from openai import OpenAI
 
 from ..config import get_config
@@ -58,7 +56,7 @@ def generate_article(
         max_tokens=config.llm_max_tokens,
     )
 
-    markdown = response.choices[0].message.content
+    markdown = response.choices[0].message.content or ""
 
     article = Article(
         paper=content.paper or Paper(title="Untitled", doi=""),

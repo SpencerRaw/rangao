@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
@@ -120,7 +119,6 @@ class DraftPublisher:
 
     def _replace_image_urls(self, rendered: RenderedArticle) -> str:
         """Upload images and replace local paths with CDN URLs in HTML."""
-        import re
         from bs4 import BeautifulSoup
 
         soup = BeautifulSoup(rendered.html, "html.parser")
