@@ -101,24 +101,37 @@ Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort & Sacrif
 ## MVP Scope (this repo)
 
 - [x] Paper discovery via Crossref API + AI filtering
+- [x] Sci-Hub PDF download with multi-mirror auto-failover (4/8 mirrors healthy)
 - [x] PDF extraction (text + images + header crop)
-- [x] AI article generation with configurable style
+- [x] AI article generation with configurable style (9 templates)
 - [x] WeChat-compatible inline-style HTML rendering
-- [x] Image upload to WeChat permanent materials
-- [ ] Sci-Hub PDF download
-- [ ] WeChat draft box auto-publish
-- [ ] Multi-style template library
+- [x] Image upload to WeChat permanent materials (3-tier CDN fallback)
+- [x] WeChat draft box auto-publish (API integration ready, needs AppID/Secret)
+- [x] Multi-style template library (9 domains: carbon dots, general, biomed, energy, physics, AI/ML, earth, social science, quick news)
+- [x] CLI with --list-styles, --mirror-status
+- [x] Streamlit web UI
+- [x] 17 integration tests
+
+**Beyond MVP (added during development):**
+- [x] DOI → metadata + PDF fetch-and-download
+- [x] Crossref metadata resolution (`fetch_paper_metadata`)
+- [x] Journal batch fetch with optional PDF download (`fetch_latest_from_journal`)
+- [x] OpenAlex citation tracking (`fetch_citing_papers`)
+- [x] API reference documentation
+- [x] Outreach email templates
 
 ---
 
 ## Roadmap
 
-| Milestone | Target | Deliverable |
+| Milestone | Status | Deliverable |
 |-----------|--------|-------------|
-| M1: Core Pipeline | Week 1-2 | DOI→HTML, all stages function |
-| M2: Auto-Publish | Week 3 | Draft box push works end-to-end |
-| M3: Web UI | Week 4 | Streamlit demo for customers |
-| M4: First Paying User | Month 2 | ¥500/article ghost-writing |
+| M1: Core Pipeline | ✅ Done | DOI→HTML, all stages function, 9 styles |
+| M2: Auto-Publish | ✅ Code ready | Draft box API integrated, waiting for credentials test |
+| M3: Web UI | ✅ Done | Streamlit app functional |
+| M4: Deployment | 🔜 Next | Streamlit Cloud or VPS for public demo |
+| M5: First Paying User | 🔜 Q3 2026 | ¥500/article ghost-writing |
+| M6: SaaS MVP | Q4 2026 | Monthly subscription ¥99-299 |
 
 ---
 
